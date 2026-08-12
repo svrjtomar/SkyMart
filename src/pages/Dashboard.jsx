@@ -5,6 +5,8 @@ import HeroSection from "../components/layout/HeroSection";
 import MetricCard from "../components/layout/MetricCard";
 import CategoryCard from "../components/layout/CategoryCard";
 import ProductCard from "../components/layout/ProductCard";
+import TopRated from "../components/layout/TopRated";
+import NewArrivals from "../components/layout/NewArrival";
 import {
   FaBox,
   FaChartLine,
@@ -12,6 +14,7 @@ import {
   FaTags,
   FaArrowRight,
 } from "react-icons/fa";
+
 
 const Dashboard = () => {
   return (
@@ -98,22 +101,15 @@ const Dashboard = () => {
             View All <FaArrowRight />
           </a>
         </div>
-        <div className="flex gap-10">
-          <ProductCard
-            imageUrl={
-              "https://www.pngkey.com/png/full/425-4252312_accessories-school-supplies.png"
-            }
-            title={"Pencile box with 3 boxes"}
-            price="Rs. 258"
-            rating={"4.5"}
-          />
-        </div>
+        <TopRated ></TopRated>
+       
         <div className="mt-4 flex justify-between">
           <h3 className="text-2xl font-bold">New Arrivals</h3>
           <a href="" className="text-lime-300 flex items-center text-sm gap-2">
             View All <FaArrowRight />
           </a>
         </div>
+        <NewArrivals />
       </main>
     </div>
   );
