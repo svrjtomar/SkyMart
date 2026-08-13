@@ -15,7 +15,6 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-
 const Dashboard = () => {
   return (
     <div className="bg-sky-dark min-h-screen text-white relative">
@@ -101,8 +100,9 @@ const Dashboard = () => {
             View All <FaArrowRight />
           </a>
         </div>
-        <TopRated ></TopRated>
-       
+
+        <TopRated></TopRated>
+
         <div className="mt-4 flex justify-between">
           <h3 className="text-2xl font-bold">New Arrivals</h3>
           <a href="" className="text-lime-300 flex items-center text-sm gap-2">
