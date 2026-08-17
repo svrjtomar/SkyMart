@@ -13,8 +13,8 @@ const HeroSection = () => {
           fashion, and more.
         </p>
         <div className="button-contianer flex gap-3">
-          <a className="py-2 px-3 border rounded-2xl cursor-pointer text-black bg-[var(--color-accent)]">Shop Now</a> 
-          <a className="py-2 px-3 border border-gray-600 rounded-2xl cursor-pointer">View All Products</a>
+          <a  href="/shop" className="py-2 px-3 border rounded-2xl cursor-pointer text-black bg-[var(--color-accent)]">Shop Now</a> 
+          <a href="/shop" className="py-2 px-3 border border-gray-600 rounded-2xl cursor-pointer">View All Products</a>
         </div>
       </div>
 

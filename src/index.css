@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@tailwind utilities;
+
+
 :root {
   /* --- Colors --- */
   
@@ -25,6 +28,7 @@
 *{
    box-sizing: border-box;
    /* outline: 1px solid red; */
+   scrollbar-width: none;
 }
 
 /* Base styles applying the variables */
