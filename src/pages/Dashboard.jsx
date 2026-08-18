@@ -48,7 +48,7 @@ const Dashboard = () => {
           <MetricCard
             className="text-blue-600 bg-blue-600/10"
             icon={<FaChartLine />}
-            value={`$${subtotal}`}
+            value={`$${subtotal.toFixed(2)}`}
             title="Cart Value"
             subtitle="Ready to checkout"
           />
