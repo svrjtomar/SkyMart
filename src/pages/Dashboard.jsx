@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa";
 
 const Dashboard = () => {
-  const { cartItems } = useCart();
+  const { cartItems, cartTotalItems } = useCart();
 
   const getPriceNumber = (priceString) => {
     return parseFloat(String(priceString).replace(/[^0-9.-]+/g, ""));
@@ -41,7 +41,7 @@ const Dashboard = () => {
           <MetricCard
             className="text-lime-600 bg-lime-400/10"
             icon={<FaBox />}
-            value={cartItems.length}
+            value={cartTotalItems}
             title="Cart Items"
             subtitle="In your bag"
           />
