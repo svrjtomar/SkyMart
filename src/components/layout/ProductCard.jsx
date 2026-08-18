@@ -1,6 +1,7 @@
 import React from "react";
-import { LuShoppingBag } from "react-icons/lu";
+import { LuShoppingBag, LuMinus, LuPlus } from "react-icons/lu";
 import { useCart } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
   id,
@@ -12,9 +13,18 @@ const ProductCard = ({
   ratingCount,
 }) => {
 
-  const { addToCart } = useCart();
-  const handleAddToCart = () => { 
-    console.log("Adding to cart:", { id, imageUrl, rating, title, price });
+  const { addToCart, decreaseQuantity, cartItems } = useCart();
+
+  const cartItem = cartItems.find((item) => item.id === id);
+  const quantity = cartItem ? cartItem.quantity : 0;
+
+  const handleAddInitial = (e) => {
+    e.preventDefault(); 
+    addToCart({ id, imageUrl, title, price });
+  };
+
+  const handleAddToCart = (e) => { 
+    e.preventDefault();
     addToCart({id, imageUrl, title, price});
 
   }
@@ -23,6 +33,7 @@ const ProductCard = ({
       <div className="absolute top-2 left-2 z-10 px-2 py-1  rounded-3xl bg-black/60 backdrop-blur-sm border border-white/10 text-white text-[10px] font-bold uppercase">
         {category}
       </div>
+      <Link to={`/product/${id}`} className="flex flex-col grow">
 
       <div className="relative w-full aspect-4/3 bg-[#2A2A2A] ">
         <img
@@ -48,14 +59,46 @@ const ProductCard = ({
           <p className="text-lime-500 text-lg md:text-xl font-bold">{price}</p>
 
           
+          {/* 4. THE CONDITIONAL BUTTON RENDERING */}
+        {quantity === 0 ? (
+          // State A: Not in cart yet -> Show standard "Add" button
           <button 
-          onClick={handleAddToCart}
-          className="px-4 h-9 rounded-xl bg-lime-400 text-black flex justify-center items-center gap-1 hover:bg-lime-500 transition-colors focus:ring-2 focus:ring-lime-300 cursor-pointer">
-            <LuShoppingBag />
+            onClick={handleAddInitial}
+            className="h-9 px-4 rounded-xl bg-lime-400 text-black flex justify-center items-center gap-2 hover:bg-lime-500 transition-colors"
+          >
+            <LuShoppingBag size={16} />
             <span className="text-sm font-bold hidden sm:block">Add</span>
           </button>
+        ) : (
+          // State B: Already in cart -> Show the - / + controller
+          <div className="h-9 flex items-center bg-[#2A2A2A] rounded-xl border border-[#444444] overflow-hidden">
+            
+            {/* Minus Button */}
+            <button 
+              onClick={(e) => { e.preventDefault(); decreaseQuantity(id); }}
+              className="w-8 h-full flex items-center justify-center text-white hover:bg-[#333333] hover:text-lime-400 transition-colors"
+            >
+              <LuMinus size={14} />
+            </button>
+            
+            {/* Quantity Display */}
+            <span className="w-8 text-center text-sm font-bold text-white">
+              {quantity}
+            </span>
+            
+            {/* Plus Button */}
+            <button 
+              onClick={(e) => { e.preventDefault(); addToCart({ id, imageUrl, title, price }); }}
+              className="w-8 h-full flex items-center justify-center text-white hover:bg-[#333333] hover:text-lime-400 transition-colors"
+            >
+              <LuPlus size={14} />
+            </button>
+            
+          </div>
+        )}
         </div>
       </div>
+      </Link>
     </div>
   );
 };
